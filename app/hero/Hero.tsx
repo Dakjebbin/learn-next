@@ -12,7 +12,7 @@ const Hero = () => {
             {movieList.map((movie, index) => (
                 <div key={index} className='relative ml-5' >
                         <div className='w-[100%]'>
-                       <Image className='rounded-lg hover:-translate-y-4 duration-500 w-full' src={movie.image} width={1000} height={290} alt={movie.title}/>
+                       <Image className='rounded-lg hover:-translate-y-4 duration-500 w-full' src={movie.image} width={500} height={500} alt={movie.title}/>
                        </div>
                        <div className='absolute -left-5 bottom-2 lg:text-[6rem] text-[4rem] '>
                        <p className='text-black font-extrabold outlined '>{movie.id} </p> 

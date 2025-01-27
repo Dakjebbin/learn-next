@@ -5,6 +5,7 @@ import Home from './Home/Home'
 import Hero from './hero/Hero'
 import Reasons from './reasons/reasons'
 import Faq from './FAq/faq'
+import Footer from './footer/footer'
 // import Search from './Search/Search'
 
 
@@ -20,6 +21,7 @@ const Page = () => {
       <Hero/>
       <Reasons/>
       <Faq/>
+      <Footer/>
     </div>
 
    
