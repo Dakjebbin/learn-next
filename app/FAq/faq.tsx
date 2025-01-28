@@ -78,6 +78,28 @@ const Faq: React.FC = () => {
           ))}
         </ul>
       </div>
+
+        
+      <div className="mt-16">
+      <p className="text-[1rem] font-medium sm:text-center  mb-3">
+          Ready to watch? Enter your email to create or restart your membership.
+        </p>
+        <form className="w-full flex items-center justify-center">
+          <div className="flex w-full justify-center sm:items-center flex-col sm:flex-row gap-3">
+            <input
+              className="sm:w-[550px] px-8 py-4 w-[90%] rounded-md text-white font-semibold pl-4 border border-green-300 bg-[#ffffff18] "
+              type="email"
+              required
+              placeholder="Email Address"
+            />
+            <span>
+              <button className="w-40 py-3 pl-1 pr rounded-md font-bold font-sans md:text-[1.5rem] text-[1.2rem] bg-[#d4131d]">
+                Get Started &gt;
+              </button>
+            </span>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

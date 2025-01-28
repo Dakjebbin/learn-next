@@ -5,7 +5,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <header className=" z-[1000] sticky bg-netflixBG bg-cover bg-no-repeat ">
+    <header className=" z-[1000]  bg-netflixBG bg-cover bg-no-repeat ">
       <nav className="pt-6 items-center flex justify-between md:mx-20 ">
         <div className="md:w-[300px] w-[200px] h-16 ">
           <Link href="/">
@@ -17,11 +17,14 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="sm:mr-16 mr-10 z-30">
+      <Link href="/auth/login"> 
+           <div className="sm:mr-16 mr-10 z-30">
           <button className="bg-[#e50914] hover:bg-[#b81820] transition-colors duration-500 text-white font-bold font-sans text-[0.875rem] rounded-lg px-5 py-[5px]">
             Sign In
           </button>
         </div>
+        </Link>
+
       </nav>
 
       <div className="text-white bg-transparent border-b border-b-red-400 w-full items-center flex py-28 flex-col justify-center">
