@@ -8,7 +8,7 @@ import React from 'react'
 const Login = () => {
   return (
     <div className='flex flex-col text-white justify-center items-center '>
-        <div className='bg-[#000000b3] p-16'>
+        <div className='bg-[#000000b3] sm:p-16 pt-16'>
                     <p className='text-3xl mb-10 font-bold'>Sign In</p>
         <form action="">
             <div className='w-[300px] mb-7'>
