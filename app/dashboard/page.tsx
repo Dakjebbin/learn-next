@@ -10,8 +10,9 @@ const Page = async () => {
     <div className='text-white'>
         <h1>Welcome {session?.user?.name}</h1>
        
+       {session?.user?.image &&
         <Image src={session?.user?.image} width={100} height={100} alt="user Image"  />
-        
+       }
         <form action={async () => {
             'use server'
 
