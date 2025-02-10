@@ -1,4 +1,7 @@
 
+
+import { signIn } from '@/auth'
+
 import Link from 'next/link'
 import React from 'react'
 
@@ -20,9 +23,15 @@ const Login = () => {
 
         <p className='text-center text-xl my-3'>OR</p>
 
-        <div>
-        <button className='w-full bg-[#464343a6] py-2 rounded-md font-semibold hover:bg-[]'>Sign In Using Google</button>
-        </div>
+        <form action= {
+          async () => {
+            'use server'
+            await signIn('google',  { redirectTo: "/dashboard" })
+          }}>
+        <button type='submit' className='w-full bg-[#464343a6] py-2 rounded-md font-semibold hover:bg-[]'>Sign In Using Google</button>
+        </form>
+
+        
 
         <p className='my-5 text-center'>
             Forgot Password?
