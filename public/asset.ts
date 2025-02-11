@@ -1,7 +1,13 @@
-import logo from "./netflix-removebg-preview.png"
+import logo from "./netflix-removebg-preview.png";
+import bg from "./BG.png";
+import hero from './hero-img.png';
+import search from './search.svg';
 
 export const assets = {
     logo,
+    bg,
+    hero, 
+    search
 }
 
 let numberAdd: number = 1

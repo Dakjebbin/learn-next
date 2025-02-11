@@ -13,7 +13,8 @@ export default {
         foreground: "var(--foreground)",
       },
       backgroundImage: {
-        'netflixBG': 'url("/netfix background.webp")'
+        'netflixBG': 'url("/netfix background.webp")',
+        'heroBg': 'url("/BG.png")',
       }
     },
   },

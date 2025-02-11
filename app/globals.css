@@ -1,6 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 *{
@@ -21,6 +25,10 @@ html{
   opacity: 0;
   overflow: hidden;
   transition: max-height 0.5s ease, opacity 0.3s ease; 
+}
+
+.fontfam{
+  font-family: "DM Sans", serif;
 }
 
 .faq-answer.open {
