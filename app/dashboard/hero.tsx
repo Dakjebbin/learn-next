@@ -71,9 +71,6 @@ const Hero = () => {
     fetchMovies(debounceSearch)
   }, [debounceSearch])
 
-          
-  
-
   
   return (
     <div>
@@ -101,6 +98,7 @@ const Hero = () => {
         </section>
       </div>
       <h2 className="text-center text-2xl font-bold my-10">All Movies</h2>
+      {movies.length === 0 && <p className="text-center text-red-500 text-2xl font-bold my-10">No Movies Found</p>}
       <div className="w-[80%] m-auto grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
         {loading ? <Spinner /> : (
           movies.map((movie, index) => (
