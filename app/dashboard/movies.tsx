@@ -30,7 +30,8 @@ const Movies: React.FC<MoviesProps> = ({ movies }) => {
               alt="poster image"
             />
           ) : (
-            <Image src={assets.no_poster} alt="noPoster" />
+            <Image src={assets.no_poster} width={500}
+            height={750} alt="noPoster" />
           )}
 
           <div>

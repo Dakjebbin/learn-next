@@ -6,6 +6,7 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Movies from './movies'
 import Spinner from './spinner'
+import { useDebounce } from 'react-use'
 
 type Movie = {
   id: number,
@@ -21,8 +22,11 @@ const Hero = () => {
   const [search, setSearch] = useState('')
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false)
+  const [debounceSearch, setDebounceSearch] = useState('')
   const baseUrl: string = "https://api.themoviedb.org/3";
   const apiKey = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN
+
+  useDebounce(() => setDebounceSearch(search), 1000, [search])
 
   useEffect(() => {
     const fetchMovies = async (query: string = '') => {
@@ -32,13 +36,15 @@ const Hero = () => {
         const endPoint = query ? `${baseUrl}/search/movie?query=${encodeURIComponent(query)}`
           :
           `${baseUrl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
+          
+          console.log(query);
+          
 
         const response = await axios.get(endPoint, {
           headers: {
             'Authorization': `Bearer ${apiKey}`
           }
         })
-        console.log(response.data.results);
 
 
         setMovies(response.data.results)
@@ -60,8 +66,15 @@ const Hero = () => {
       }
 
     }
-    fetchMovies(search)
-  }, [search])
+
+    
+    fetchMovies(debounceSearch)
+  }, [debounceSearch])
+
+          
+  
+
+  
   return (
     <div>
       <div className='bg-heroBg bg-cover w-full'>
