@@ -1,70 +1,60 @@
-"use client"
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import Spinner from './spinner';
+"use client";
+
+import { assets } from "@/public/asset";
+import Image from "next/image";
 
 type Movie = {
-    id: number,
-    title: string,
-    poster_path: string,
-    overview: string,
-    release_date: string
-}
+  id: number;
+  title: string;
+  poster_path: string;
+  overview: string;
+  release_date: string;
+  vote_average: number;
+  original_language: string;
+};
 
-const Movies = () => {
-    const [movies, setMovies] =  useState<Movie[]>([]);
-    const [loading, setLoading] = useState(false)
-    const baseUrl:string = "https://api.themoviedb.org/3";
-    const apiKey = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN
+type MoviesProps = {
+  movies: Movie;
+};
 
-    useEffect(() => {
-        const fetchMovies = async () => {
-            setLoading(true)
-            try {
-                
-                const response = await axios.get(`${baseUrl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,{
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`
-                    }
-                })
-                
-                setMovies(response.data.results)
-
-                if(response.status === 200) {
-               console.log("movies fetched successfully")
-                }  else{
-                    console.log("Failed to fetch movies")
-                }
-                
-            } catch (error) {
-                if (axios.isAxiosError(error)) {
-                    console.log("Error response:", error?.response?.data);
-                  } else {
-                    console.log("Error:", error);
-                  }
-            } finally {
-                setLoading(false)
-            }
-            
-        }
-        fetchMovies()
-    }, [])
+const Movies: React.FC<MoviesProps> = ({ movies }) => {
   return (
-    <div className='text-white'>
-        <h2 className='text-center text-2xl font-bold my-10'>All Movies</h2>
-        {loading ? (
-            <Spinner/>
-        ) : (
-            <ul className='w-[80%] m-auto grid grid-cols-4 gap-5 max-xs:grid-cols-1 max-sm:grid-cols-2 max-lg:grid-cols-3'>
-                {movies.map((movie, index:number) => (
-                    <p key={index} >
-                        {movie.title}
-                    </p>
-                ))}
-            </ul>
-        )}
-    </div>
-  )
-}
+    <div className="text-white">
+      <div>
+        <div className="p-5 rounded-2xl shadow-inner shadow-[#acacac]">
+          {movies.poster_path ? (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
+              width={500}
+              height={750}
+              alt="poster image"
+            />
+          ) : (
+            <Image src={assets.no_poster} alt="noPoster" />
+          )}
 
-export default Movies
+          <div>
+            <h3 className="mt-4 font-semibold">{movies.title}</h3>
+            <span className="flex">
+              <Image
+                src={assets.star}
+                alt="icon"
+                className="text-[#dfdf1f] mr-2"
+              />
+              <p className="mr-2">{movies.vote_average.toFixed(1)} </p>
+              <p>•</p>
+              <p className="ml-2 text-[#a8a6a6]">{movies.original_language}</p>
+
+              <p className="ml-2">•</p>
+              <p className="ml-2 text-[#a8a6a6]">
+                {movies.release_date.split("-")[0]}
+              </p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Movies;

@@ -4,7 +4,7 @@ import { auth, signOut } from '@/auth'
 import Image from 'next/image'
 import { assets } from '@/public/asset'
 import Hero from './hero'
-import Movies from './movies'
+
 
 const Page = async () => {
     const session = await auth()
@@ -35,7 +35,7 @@ const Page = async () => {
         </div>
         </div>
         <Hero/>
-        <Movies/>
+       
     </div>
       
   )

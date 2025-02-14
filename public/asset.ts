@@ -2,12 +2,16 @@ import logo from "./netflix-removebg-preview.png";
 import bg from "./BG.png";
 import hero from './hero-img.png';
 import search from './search.svg';
+import star from "./star.svg"
+import no_poster from "./no poster.jpeg"
 
 export const assets = {
     logo,
     bg,
     hero, 
-    search
+    search,
+    star,
+    no_poster
 }
 
 let numberAdd: number = 1
