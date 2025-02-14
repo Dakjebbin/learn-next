@@ -1,6 +1,7 @@
 "use client"
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import Spinner from './spinner';
 
 type Movie = {
     id: number,
@@ -14,7 +15,7 @@ const Movies = () => {
     const [movies, setMovies] =  useState<Movie[]>([]);
     const [loading, setLoading] = useState(false)
     const baseUrl:string = "https://api.themoviedb.org/3";
-    const apiKey = process.env.TMDB_ACCESS_TOKEN
+    const apiKey = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -26,7 +27,6 @@ const Movies = () => {
                         'Authorization': `Bearer ${apiKey}`
                     }
                 })
-                console.log(response);
                 
                 setMovies(response.data.results)
 
@@ -37,7 +37,11 @@ const Movies = () => {
                 }
                 
             } catch (error) {
-                console.log(error)
+                if (axios.isAxiosError(error)) {
+                    console.log("Error response:", error?.response?.data);
+                  } else {
+                    console.log("Error:", error);
+                  }
             } finally {
                 setLoading(false)
             }
@@ -47,14 +51,15 @@ const Movies = () => {
     }, [])
   return (
     <div className='text-white'>
+        <h2 className='text-center text-2xl font-bold my-10'>All Movies</h2>
         {loading ? (
-            <div className='text-red-500 animate-pulse'>Loading</div>
+            <Spinner/>
         ) : (
-            <ul>
-                {movies.map((movie, index) => (
-                    <li key={index}>
+            <ul className='w-[80%] m-auto grid grid-cols-4 gap-5 max-xs:grid-cols-1 max-sm:grid-cols-2 max-lg:grid-cols-3'>
+                {movies.map((movie, index:number) => (
+                    <p key={index} >
                         {movie.title}
-                    </li>
+                    </p>
                 ))}
             </ul>
         )}
